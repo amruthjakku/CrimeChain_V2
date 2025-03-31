@@ -35,9 +35,3 @@ A **tamper-proof, decentralized crime database prototype** built with Flask, usi
 
 ---
 
-### 📜 License
-This project is licensed under the **MIT License** – feel free to modify and use it.
-
-💡 *Contributions & feedback are welcome! Feel free to create an issue or a pull request.*
-
-
