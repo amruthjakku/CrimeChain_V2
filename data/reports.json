@@ -3,12 +3,13 @@
     "id": "1",
     "crime_type": "Assault",
     "location": "City A",
-    "details": "Victim stabbed in alley.",
+    "details": "Victim stabbed in alley at night.",
     "weapon": "Knife",
     "injury": "Ushaped",
     "suspect": "Tall Male",
     "mo": "Night Ambush",
-    "date": "2020-06-15",
+    "date": "2018-06-15",
+    "cluster": "Unclustered",
     "tags": {
       "App-Name": "CrimeChain",
       "Crime-Type": "Assault",
@@ -18,17 +19,18 @@
       "Suspect": "Tall Male",
       "MO": "Night Ambush"
     }
+    
   },
   {
     "id": "2",
     "crime_type": "Robbery",
     "location": "City A",
-    "details": "Victim cut during theft.",
+    "details": "Victim cut during theft at night.",
     "weapon": "Knife",
     "injury": "Ushaped",
     "suspect": "Unknown",
     "mo": "Night Ambush",
-    "date": "2023-01-20",
+    "date": "2020-01-20",
     "tags": {
       "App-Name": "CrimeChain",
       "Crime-Type": "Robbery",
@@ -43,12 +45,12 @@
     "id": "3",
     "crime_type": "Assault",
     "location": "City A",
-    "details": "Stabbed near park.",
+    "details": "Stabbed near park at night.",
     "weapon": "Knife",
     "injury": "Ushaped",
     "suspect": "Tall Male",
     "mo": "Night Ambush",
-    "date": "2025-03-31",
+    "date": "2023-03-31",
     "tags": {
       "App-Name": "CrimeChain",
       "Crime-Type": "Assault",
@@ -77,6 +79,28 @@
       "Injury": "Bullet Wound",
       "Suspect": "Unknown",
       "MO": "Daytime Entry"
+    }
+  },
+  {
+    "id": "5",
+    "crime_type": "Assault",
+    "location": "City A",
+    "details": "Victim stabbed in street at night.",
+    "weapon": "Knife",
+    "injury": "Ushaped",
+    "suspect": "Tall Male",
+    "mo": "Night Ambush",
+    "date": "2025-03-31",
+    "geo": {"lat": 35.123, "lon": -75.456},
+    "sentiment": "negative",
+    "tags": {
+      "App-Name": "CrimeChain",
+      "Crime-Type": "Assault",
+      "Location": "City A",
+      "Weapon": "Knife",
+      "Injury": "Ushaped",
+      "Suspect": "Tall Male",
+      "MO": "Night Ambush"
     }
   }
 ]

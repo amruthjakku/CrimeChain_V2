@@ -1,38 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrimeChain MVP</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>CrimeChain: Solve Crimes Across Time</h1>
-
-    <!-- Submit Report Form -->
-    <h2>Submit a Crime Report</h2>
-    <form method="POST">
-        <input name="crime_type" placeholder="Crime Type (e.g., Assault)" required>
-        <input name="location" placeholder="Location (e.g., City A)" required>
-        <input name="date" type="date" placeholder="Date">
-        <input name="weapon" placeholder="Weapon (e.g., Knife)">
-        <input name="injury" placeholder="Injury Type (e.g., Ushaped)">
-        <input name="suspect" placeholder="Suspect (e.g., Tall Male)">
-        <input name="mo" placeholder="MO (e.g., Night Ambush)">
-        <textarea name="details" placeholder="Details" required></textarea>
-        <button type="submit">Submit Report</button>
-    </form>
-    {% if report_id %}
-        <p>Report submitted! ID: {{ report_id }}</p>
-    {% endif %}
-
-    <!-- Search Reports Form -->
-    <h2>Search for Patterns</h2>
-    <form method="POST" action="{{ url_for('search') }}">
-        <input name="search_query" placeholder="Search (e.g., Ushaped, Knife)" required>
-        <input name="start_date" type="date" placeholder="Start Date">
-        <input name="end_date" type="date" placeholder="End Date">
-        <button type="submit">Search</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Dashboard - CrimeChain{% endblock %}
+{% block content %}
+<div class="container-fluid fade-in">
+    <h1 class="mb-4">CrimeChain Dashboard</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Submit Report</div>
+                <div class="card-body">
+                    {% if role == 'police' %}
+                    <form method="POST">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="crime_type" placeholder="Crime Type" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="location" placeholder="Location" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="weapon" placeholder="Weapon">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="injury" placeholder="Injury Type">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="suspect" placeholder="Suspect">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="mo" placeholder="MO">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" name="details" placeholder="Details" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    {% if report_id %}
+                        <p class="mt-3">Report ID: {{ report_id }} | Cluster: {{ cluster }}</p>
+                        <p>Suggested Tags: {{ suggested_tags | tojson }}</p>
+                    {% endif %}
+                    {% else %}
+                        <p class="text-muted">Only police can submit reports.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Search Reports</div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('search') }}">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="search_query" placeholder="Search..." required>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="date" class="form-control" name="start_date" placeholder="Start Date">
+                            </div>
+                            <div class="col">
+                                <input type="date" class="form-control" name="end_date" placeholder="End Date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 w-100">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-primary text-white">Analytics</div>
+                <div class="card-body">
+                    <p>Total Reports: {{ analytics.total_reports }}</p>
+                    <p>Weapons: {{ analytics.weapon_counts | tojson }}</p>
+                    <p>Locations: {{ analytics.location_counts | tojson }}</p>
+                    <p>Clusters: {{ analytics.cluster_counts | tojson }}</p>
+                    <canvas id="crimeTimeline" height="100"></canvas>
+                    {% if analytics.predictions %}
+                        <p class="text-danger"><strong>Predictions:</strong> {{ analytics.predictions | join(', ') }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Mock timeline data (replace with real data from analytics if available)
+    const ctx = document.getElementById('crimeTimeline').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'Crime Incidents',
+                data: [1, 2, 1, 3, 2, 4, 3, {{ analytics.total_reports }}],
+                borderColor: '#dc3545',
+                fill: false
+            }]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+</script>
+{% endblock %}

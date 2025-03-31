@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CrimeChain{% endblock %}</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/leaflet.css') }}" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .sidebar { height: 100vh; position: fixed; top: 0; left: 0; width: 250px; background: #2c3e50; padding-top: 20px; }
+        .sidebar a { color: white; padding: 15px; display: block; text-decoration: none; }
+        .sidebar a:hover { background: #34495e; }
+        .content { margin-left: 260px; padding: 20px; }
+        .dark-mode { background: #1a1a1a; color: #f4f4f4; }
+        .dark-mode .sidebar { background: #121212; }
+        .dark-mode .card { background: #2c2c2c; color: #f4f4f4; }
+        #map { height: 300px; }
+        .fade-in { animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3 class="text-white text-center"><img src="{{ url_for('static', filename='logo.png') }}" alt="CrimeChain Logo" width="50"> CrimeChain</h3>
+        <a href="{{ url_for('index') }}">Dashboard</a>
+        <a href="{{ url_for('progress') }}">Progress</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        <div class="form-check form-switch p-3">
+            <input class="form-check-input" type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+            <label class="form-check-label text-white" for="darkModeToggle">Dark Mode</label>
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+        if (localStorage.getItem('darkMode') === 'true') toggleDarkMode();
+    </script>
+</body>
+</html>

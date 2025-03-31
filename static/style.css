@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 20px;
     background-color: #f4f4f9;
     color: #333;
 }
@@ -8,18 +9,37 @@ body {
 h1 {
     color: #2c3e50;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 h2 {
     color: #34495e;
 }
 
-form {
-    margin: 20px 0;
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #ddd;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #2980b9;
+    color: white;
+}
+
+form, .analytics {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
 input, textarea {
@@ -46,7 +66,7 @@ button:hover {
     background-color: #1c5a85;
 }
 
-.result {
+.result, .login-form {
     border: 1px solid #ddd;
     padding: 15px;
     margin: 10px 0;
@@ -62,4 +82,8 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.analytics p {
+    margin: 5px 0;
 }

@@ -1,0 +1,72 @@
+[
+  {
+    "username": "unknown",
+    "action": "Searched for 'ushape'",
+    "timestamp": "2025-03-31T14:53:18.386189"
+  },
+  {
+    "username": "unknown",
+    "action": "Logged out",
+    "timestamp": "2025-03-31T14:53:26.695428"
+  },
+  {
+    "username": "unknown",
+    "action": "Logged out",
+    "timestamp": "2025-03-31T14:53:30.974474"
+  },
+  {
+    "username": "unknown",
+    "action": "Logged out",
+    "timestamp": "2025-03-31T14:53:40.218935"
+  },
+  {
+    "username": "police",
+    "action": "Logged in",
+    "timestamp": "2025-03-31T14:53:50.633511"
+  },
+  {
+    "username": "police",
+    "action": "Logged out",
+    "timestamp": "2025-03-31T14:53:54.656391"
+  },
+  {
+    "username": "police",
+    "action": "Logged in",
+    "timestamp": "2025-03-31T14:54:04.265507"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'city A'",
+    "timestamp": "2025-03-31T14:54:10.716298"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Gun'",
+    "timestamp": "2025-03-31T14:54:20.327803"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Ushaped'",
+    "timestamp": "2025-03-31T14:55:51.639341"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Knife'",
+    "timestamp": "2025-03-31T15:00:50.984820"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Ushaped'",
+    "timestamp": "2025-03-31T15:01:13.019037"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Ushaped'",
+    "timestamp": "2025-03-31T15:01:55.101755"
+  },
+  {
+    "username": "police",
+    "action": "Searched for 'Ushaped'",
+    "timestamp": "2025-03-31T15:08:38.180059"
+  }
+]

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Progress - CrimeChain{% endblock %}
+{% block content %}
+<div class="container-fluid fade-in">
+    <h1 class="mb-4">Development Progress</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">Milestones</div>
+                <div class="card-body">
+                    <ul>
+                        {% for milestone in progress.milestones %}
+                            <li>{{ milestone.name }} - {{ milestone.date }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Stats</div>
+                <div class="card-body">
+                    <p>Reports Added: {{ progress.stats.reports_added }}</p>
+                    <p>Searches Performed: {{ progress.stats.searches }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

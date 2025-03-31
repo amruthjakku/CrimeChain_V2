@@ -1,33 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - CrimeChain</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Search Results for "{{ query }}"</h1>
-    
+{% extends "base.html" %}
+{% block title %}Search Results - CrimeChain{% endblock %}
+{% block content %}
+<div class="container-fluid fade-in">
+    <h1 class="mb-4">Search Results for "{{ query }}"</h1>
     {% if results %}
-        <p><strong>Pattern Summary:</strong> Found {{ results|length }} matching cases.</p>
+        <p>Found {{ results|length }} matches</p>
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Crime Heatmap</div>
+            <div class="card-body">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Timeline</div>
+            <div class="card-body">
+                <ul>
+                    {% for result in results %}
+                        <li>{{ result.date }}: {{ result.crime_type }} in {{ result.location }} 
+                            {% if result.geo %}
+                                (Geo: {{ result.geo.lat|default('N/A') }}, {{ result.geo.lon|default('N/A') }})
+                            {% else %}
+                                (Geo: N/A)
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
         {% for result in results %}
-            <div class="result">
-                <p><strong>ID:</strong> {{ result.id }}</p>
-                <p><strong>Crime Type:</strong> {{ result.crime_type }}</p>
-                <p><strong>Location:</strong> {{ result.location }}</p>
-                <p><strong>Date:</strong> {{ result.date }}</p>
-                <p><strong>Weapon:</strong> {{ result.weapon }}</p>
-                <p><strong>Injury:</strong> {{ result.injury }}</p>
-                <p><strong>Suspect:</strong> {{ result.suspect }}</p>
-                <p><strong>MO:</strong> {{ result.mo }}</p>
-                <p><strong>Details:</strong> {{ result.details }}</p>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p><strong>ID:</strong> {{ result.id }}</p>
+                    <p><strong>Type:</strong> {{ result.crime_type }}</p>
+                    <p><strong>Location:</strong> {{ result.location }}
+                        {% if result.geo %}
+                            ({{ result.geo.lat|default('N/A') }}, {{ result.geo.lon|default('N/A') }})
+                        {% else %}
+                            (N/A)
+                        {% endif %}
+                    </p>
+                    <p><strong>Date:</strong> {{ result.date }}</p>
+                    <p><strong>Weapon:</strong> {{ result.weapon }}</p>
+                    <p><strong>Injury:</strong> {{ result.injury }}</p>
+                    <p><strong>Suspect:</strong> {{ result.suspect }}</p>
+                    <p><strong>MO:</strong> {{ result.mo }}</p>
+                    <p><strong>Details:</strong> {{ result.details }}</p>
+                    <p><strong>Sentiment:</strong> {{ result.sentiment|default('N/A') }}</p>
+                    <p><strong>Cluster:</strong> {{ result.cluster|default('N/A') }}</p>
+                </div>
             </div>
         {% endfor %}
+        <form method="POST" action="{{ url_for('search') }}" class="mb-4">
+            <input type="hidden" name="search_query" value="{{ query }}">
+            <input type="hidden" name="start_date" value="{{ request.form.get('start_date', '') }}">
+            <input type="hidden" name="end_date" value="{{ request.form.get('end_date', '') }}">
+            <button type="submit" name="export_json" value="true" class="btn btn-success me-2">Export as JSON</button>
+            <button type="submit" name="export_csv" value="true" class="btn btn-success">Export as CSV</button>
+        </form>
     {% else %}
-        <p>No results found for "{{ query }}".</p>
+        <p>No results found.</p>
     {% endif %}
-    
-    <a href="{{ url_for('index') }}">Back to Home</a>
-</body>
-</html>
+</div>
+<script>
+    const map = L.map('map').setView([35, -75], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    {% for result in results if result.geo %}
+        L.marker([{{ result.geo.lat }}, {{ result.geo.lon }}]).addTo(map)
+            .bindPopup("{{ result.crime_type }} - {{ result.location }}");
+    {% endfor %}
+</script>
+{% endblock %}
