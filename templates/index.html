@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimeChain MVP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>CrimeChain: Solve Crimes Across Time</h1>
+
+    <!-- Submit Report Form -->
+    <h2>Submit a Crime Report</h2>
+    <form method="POST">
+        <input name="crime_type" placeholder="Crime Type (e.g., Assault)" required>
+        <input name="location" placeholder="Location (e.g., City A)" required>
+        <input name="date" type="date" placeholder="Date">
+        <input name="weapon" placeholder="Weapon (e.g., Knife)">
+        <input name="injury" placeholder="Injury Type (e.g., Ushaped)">
+        <input name="suspect" placeholder="Suspect (e.g., Tall Male)">
+        <input name="mo" placeholder="MO (e.g., Night Ambush)">
+        <textarea name="details" placeholder="Details" required></textarea>
+        <button type="submit">Submit Report</button>
+    </form>
+    {% if report_id %}
+        <p>Report submitted! ID: {{ report_id }}</p>
+    {% endif %}
+
+    <!-- Search Reports Form -->
+    <h2>Search for Patterns</h2>
+    <form method="POST" action="{{ url_for('search') }}">
+        <input name="search_query" placeholder="Search (e.g., Ushaped, Knife)" required>
+        <input name="start_date" type="date" placeholder="Start Date">
+        <input name="end_date" type="date" placeholder="End Date">
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

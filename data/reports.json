@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "crime_type": "Assault",
+    "location": "City A",
+    "details": "Victim stabbed in alley.",
+    "weapon": "Knife",
+    "injury": "Ushaped",
+    "suspect": "Tall Male",
+    "mo": "Night Ambush",
+    "date": "2020-06-15",
+    "tags": {
+      "App-Name": "CrimeChain",
+      "Crime-Type": "Assault",
+      "Location": "City A",
+      "Weapon": "Knife",
+      "Injury": "Ushaped",
+      "Suspect": "Tall Male",
+      "MO": "Night Ambush"
+    }
+  },
+  {
+    "id": "2",
+    "crime_type": "Robbery",
+    "location": "City A",
+    "details": "Victim cut during theft.",
+    "weapon": "Knife",
+    "injury": "Ushaped",
+    "suspect": "Unknown",
+    "mo": "Night Ambush",
+    "date": "2023-01-20",
+    "tags": {
+      "App-Name": "CrimeChain",
+      "Crime-Type": "Robbery",
+      "Location": "City A",
+      "Weapon": "Knife",
+      "Injury": "Ushaped",
+      "Suspect": "Unknown",
+      "MO": "Night Ambush"
+    }
+  },
+  {
+    "id": "3",
+    "crime_type": "Assault",
+    "location": "City A",
+    "details": "Stabbed near park.",
+    "weapon": "Knife",
+    "injury": "Ushaped",
+    "suspect": "Tall Male",
+    "mo": "Night Ambush",
+    "date": "2025-03-31",
+    "tags": {
+      "App-Name": "CrimeChain",
+      "Crime-Type": "Assault",
+      "Location": "City A",
+      "Weapon": "Knife",
+      "Injury": "Ushaped",
+      "Suspect": "Tall Male",
+      "MO": "Night Ambush"
+    }
+  },
+  {
+    "id": "4",
+    "crime_type": "Burglary",
+    "location": "City B",
+    "details": "Shot during break-in.",
+    "weapon": "Gun",
+    "injury": "Bullet Wound",
+    "suspect": "Unknown",
+    "mo": "Daytime Entry",
+    "date": "2024-11-10",
+    "tags": {
+      "App-Name": "CrimeChain",
+      "Crime-Type": "Burglary",
+      "Location": "City B",
+      "Weapon": "Gun",
+      "Injury": "Bullet Wound",
+      "Suspect": "Unknown",
+      "MO": "Daytime Entry"
+    }
+  }
+]

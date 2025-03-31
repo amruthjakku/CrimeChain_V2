@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - CrimeChain</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Search Results for "{{ query }}"</h1>
+    
+    {% if results %}
+        <p><strong>Pattern Summary:</strong> Found {{ results|length }} matching cases.</p>
+        {% for result in results %}
+            <div class="result">
+                <p><strong>ID:</strong> {{ result.id }}</p>
+                <p><strong>Crime Type:</strong> {{ result.crime_type }}</p>
+                <p><strong>Location:</strong> {{ result.location }}</p>
+                <p><strong>Date:</strong> {{ result.date }}</p>
+                <p><strong>Weapon:</strong> {{ result.weapon }}</p>
+                <p><strong>Injury:</strong> {{ result.injury }}</p>
+                <p><strong>Suspect:</strong> {{ result.suspect }}</p>
+                <p><strong>MO:</strong> {{ result.mo }}</p>
+                <p><strong>Details:</strong> {{ result.details }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No results found for "{{ query }}".</p>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
