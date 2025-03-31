@@ -1,4 +1,4 @@
-# 🚔 CrimeChain MVP (Free Local Demo)
+# 🚔 CrimeChain MVP 
 
 A **tamper-proof, decentralized crime database prototype** built with Flask, using local JSON storage to simulate **Arweave**.
 
